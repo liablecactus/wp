@@ -6,43 +6,92 @@
     <title>RYLO Phone 1 – Der neue Standard</title>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        body { background: radial-gradient(circle at center, #001f3f 0%, #000 100%);
- font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, sans-serif; margin: 0; padding-bottom: 100px; line-height: 1.5; color: white; }
-        nav { width: 100%; max-width: 1200px; margin: 0 auto; padding: 40px 20px; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; }
-        .hero { text-align: center; padding: 60px 20px 100px; }
-        .promo-tag { color: #3b82f6; font-weight: 800; font-size: 12px; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 20px; display: block; }
-        h1 { font-size: clamp(80px, 15vw, 160px); font-weight: 900; margin: 0; letter-spacing: -6px; line-height: 0.9; }
-        .tagline { color: #555; font-size: 20px; margin-top: 20px; font-weight: 300; }
+        body { 
+            background: radial-gradient(circle at center, #001f3f 0%, #000 100%);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, sans-serif; 
+            margin: 0; 
+            padding-bottom: 60px; 
+            line-height: 1.5; 
+            color: white; 
+            overflow-x: hidden; /* Verhindert horizontales Scrollen auf Mobile */
+        }
+        nav { 
+            width: 100%; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-sizing: border-box; 
+        }
+        .hero { text-align: center; padding: 40px 20px 60px; }
+        .promo-tag { color: #3b82f6; font-weight: 800; font-size: 10px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 15px; display: block; }
+        h1 { font-size: clamp(50px, 12vw, 160px); font-weight: 900; margin: 0; letter-spacing: -3px; line-height: 0.9; }
+        .tagline { color: #555; font-size: 16px; margin-top: 15px; font-weight: 300; padding: 0 20px; }
         
-        .bento-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; width: 100%; max-width: 1200px; margin: 0 auto; padding: 20px; box-sizing: border-box; }
-        .card { background: #111; padding: 35px; border-radius: 40px; border: 1px solid #1a1a1a; display: flex; flex-direction: column; justify-content: space-between; }
+        /* Mobile-First Grid: 1 Spalte Standard, 4 Spalten auf Desktop */
+        .bento-grid { 
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: 12px; 
+            width: 100%; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 15px; 
+            box-sizing: border-box; 
+        }
         
-        /* Card Sizes */
-        .span-2 { grid-column: span 2; }
-        .span-4 { grid-column: span 4; }
-        @media (max-width: 768px) { .span-2, .span-4 { grid-column: span 4; } }
+        .card { 
+            background: rgba(17, 17, 17, 0.8); 
+            padding: 25px; 
+            border-radius: 30px; 
+            border: 1px solid #1a1a1a; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Tablet & Desktop Anpassungen */
+        @media (min-width: 768px) {
+            .bento-grid { grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 20px; }
+            .span-2 { grid-column: span 2; }
+            .span-4 { grid-column: span 4; }
+            .card { padding: 35px; border-radius: 40px; }
+            .hero { padding: 60px 20px 100px; }
+        }
 
-        .label { color: #444; text-transform: uppercase; font-size: 10px; font-weight: 800; letter-spacing: 2px; margin-bottom: 15px; }
-        .value { font-size: 32px; font-weight: 700; margin: 0; letter-spacing: -1px; }
-        .sub { color: #666; font-size: 14px; margin-top: 5px; }
+        .label { color: #444; text-transform: uppercase; font-size: 9px; font-weight: 800; letter-spacing: 2px; margin-bottom: 12px; }
+        .value { font-size: 28px; font-weight: 700; margin: 0; letter-spacing: -1px; }
+        .sub { color: #666; font-size: 13px; margin-top: 5px; }
         
-        .price-big { font-size: 80px; font-weight: 900; font-style: italic; margin: 10px 0; line-height: 1; }
-        .btn { background: #fff; color: #000; padding: 20px 60px; border-radius: 100px; font-weight: 900; text-decoration: none; display: inline-block; transition: transform 0.2s; margin-top: 40px; }
-        .btn:hover { transform: scale(1.05); }
-        
-        /* Damit beim Laden nichts flackert */
-        [data-aos] { pointer-events: none; }
-        .aos-animate { pointer-events: auto; }
+        .price-big { font-size: clamp(60px, 10vw, 80px); font-weight: 900; font-style: italic; margin: 5px 0; line-height: 1; }
+        .btn { 
+            background: #fff; 
+            color: #000; 
+            padding: 18px 40px; 
+            border-radius: 100px; 
+            font-weight: 900; 
+            text-decoration: none; 
+            display: inline-block; 
+            transition: transform 0.2s; 
+            margin-top: 30px; 
+            font-size: 14px;
+        }
+        .btn:active { transform: scale(0.95); }
+
+        footer { margin-top: 60px; color: #222; font-size: 8px; letter-spacing: 6px; text-transform: uppercase; font-weight: 900; text-align: center; padding: 0 20px; }
     </style>
 </head>
 <body>
 
     <nav>
-        <div style="font-weight: 900; font-size: 28px; letter-spacing: -1px;">RYLO Phone 1</div>
-        <a href="#" class="btn" style="margin-top: 0; padding: 10px 25px; font-size: 12px;">SHOP</a>
+        <div style="font-weight: 900; font-size: 22px; letter-spacing: -1px;">RYLO Phone 1</div>
+        <a href="#" class="btn" style="margin-top: 0; padding: 8px 18px; font-size: 10px;">SHOP</a>
     </nav>
 
-    <section class="hero" data-aos="zoom-in">
+    <section class="hero" data-aos="fade-down">
         <span class="promo-tag">Der neue Standard</span>
         <h1>RYLO Phone 1.</h1>
         <p class="tagline">Günstig war noch nie so leistungsstark.</p>
@@ -55,64 +104,54 @@
             <p style="font-weight: 700; margin: 0;">Statt 499€ UVP</p>
         </div>
 
-        <div class="card" data-aos="fade-up" data-aos-delay="100">
+        <div class="card" data-aos="fade-up">
             <span class="label">Display</span>
             <div class="value">120Hz</div>
-            <p class="sub">6.7" Super AMOLED<br>FHD+ (2340 x 1080)</p>
+            <p class="sub">6.7" Super AMOLED</p>
         </div>
 
-        <div class="card" data-aos="fade-up" data-aos-delay="200">
+        <div class="card" data-aos="fade-up">
             <span class="label">Leistung</span>
-            <div class="value">Snapdragon 6 Gen 3</div>
-            <p class="sub">Octa-Core bis 2.4 GHz</p>
+            <div class="value">SD 6G3</div>
+            <p class="sub">Snapdragon Octa-Core</p>
         </div>
 
         <div class="card span-2" data-aos="fade-up">
             <span class="label">Kamera-System</span>
             <div class="value">50MP + OIS</div>
-            <p class="sub">Triple-Cam mit 8MP Ultra-Weitwinkel & 5MP Makro. 4K Video Support.</p>
+            <p class="sub">Triple-Cam & 4K Video Support.</p>
         </div>
 
-        <div class="card" data-aos="fade-up" data-aos-delay="100">
+        <div class="card" data-aos="fade-up">
             <span class="label">Speicher</span>
             <div class="value">256 GB</div>
-            <p class="sub">8 GB RAM<br>Erweiterbar via microSD</p>
+            <p class="sub">8 GB RAM + microSD</p>
         </div>
 
-        <div class="card" data-aos="fade-up" data-aos-delay="200">
+        <div class="card" data-aos="fade-up">
             <span class="label">Energie</span>
             <div class="value">5000mAh</div>
-            <p class="sub">45W Schnellladen via USB-C</p>
+            <p class="sub">45W Schnellladen</p>
         </div>
 
         <div class="card span-4" data-aos="fade-up">
-            <span class="label">Bauweise & Schutz</span>
-            <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;">
-                <div class="value">Polycarbonat Shell</div>
-                <p class="sub" style="margin: 0;">IP67 Wasser- & Staubresistent | Gorilla Glass Victus+ | Nur 195g</p>
-            </div>
-        </div>
-        
-        <div class="card span-4" style="text-align: center; background: transparent;" data-aos="fade-in">
-            <p class="sub">5G • Wi-Fi 6 • Bluetooth 5.3 • NFC • Dual SIM + eSIM</p>
+            <span class="label">Bauweise</span>
+            <div class="value">Polycarbonat Shell</div>
+            <p class="sub">IP67 Wasserfest | Gorilla Glass | 195g</p>
         </div>
     </div>
 
-    <div style="text-align: center;" data-aos="zoom-in" data-aos-offset="50">
+    <div style="text-align: center; padding: 0 20px;" data-aos="zoom-in">
         <a href="#" class="btn">Erstellt von Alessandro, Faran und Bili</a>
     </div>
 
-    <footer style="margin-top: 100px; color: #222; font-size: 10px; letter-spacing: 10px; text-transform: uppercase; font-weight: 900; text-align: center;">
+    <footer>
         RYLO Global 2026
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100
-        });
+        AOS.init({ duration: 800, once: true, offset: 50 });
     </script>
 </body>
 </html>
