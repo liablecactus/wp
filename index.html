@@ -5,54 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RYLO – Der neue Standard</title>
     <style>
-        /* Direktes CSS - funktioniert immer, auch ohne Internet-Frameworks */
-        body { background-color: #000; color: #fff; font-family: -apple-system, sans-serif; margin: 0; display: flex; flex-direction: column; align-items: center; text-align: center; }
-        nav { width: 100%; max-width: 1200px; padding: 40px; display: flex; justify-content: space-between; box-sizing: border-box; }
-        .hero { padding: 100px 20px; }
-        h1 { font-size: 80px; font-weight: 900; margin: 0; letter-spacing: -4px; }
-        .tagline { color: #666; font-size: 20px; margin-top: 10px; font-style: italic; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; width: 100%; max-width: 1100px; padding: 20px; box-sizing: border-box; }
-        .card { background: #111; padding: 40px; border-radius: 30px; border: 1px solid #222; }
-        .price { font-size: 60px; font-weight: 900; color: #fff; margin: 10px 0; }
-        .btn { background: #fff; color: #000; padding: 15px 40px; border-radius: 50px; font-weight: bold; text-decoration: none; margin-top: 40px; display: inline-block; }
-        .promo { color: #ff3b30; font-weight: bold; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; }
+        body { background-color: #000; color: #fff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, sans-serif; margin: 0; padding-bottom: 100px; line-height: 1.5; }
+        nav { width: 100%; max-width: 1200px; margin: 0 auto; padding: 40px 20px; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; }
+        .hero { text-align: center; padding: 60px 20px 100px; }
+        .promo-tag { color: #3b82f6; font-weight: 800; font-size: 12px; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 20px; display: block; }
+        h1 { font-size: clamp(80px, 15vw, 160px); font-weight: 900; margin: 0; letter-spacing: -6px; line-height: 0.9; }
+        .tagline { color: #555; font-size: 20px; margin-top: 20px; font-weight: 300; }
+        
+        .bento-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; width: 100%; max-width: 1200px; margin: 0 auto; padding: 20px; box-sizing: border-box; }
+        .card { background: #111; padding: 35px; border-radius: 40px; border: 1px solid #1a1a1a; display: flex; flex-direction: column; justify-content: space-between; }
+        
+        /* Card Sizes */
+        .span-2 { grid-column: span 2; }
+        .span-4 { grid-column: span 4; }
+        @media (max-width: 768px) { .span-2, .span-4 { grid-column: span 4; } }
+
+        .label { color: #444; text-transform: uppercase; font-size: 10px; font-weight: 800; letter-spacing: 2px; margin-bottom: 15px; }
+        .value { font-size: 32px; font-weight: 700; margin: 0; letter-spacing: -1px; }
+        .sub { color: #666; font-size: 14px; margin-top: 5px; }
+        
+        .price-big { font-size: 80px; font-weight: 900; font-style: italic; margin: 10px 0; line-height: 1; }
+        .btn { background: #fff; color: #000; padding: 20px 60px; border-radius: 100px; font-weight: 900; text-decoration: none; display: inline-block; transition: transform 0.2s; margin-top: 40px; }
+        .btn:hover { transform: scale(1.05); }
     </style>
 </head>
 <body>
 
     <nav>
-        <div style="font-weight: 900; font-size: 24px;">RYLO Phone 1</div>
-        <div style="font-size: 12px; color: #666; text-transform: uppercase; letter-spacing: 2px;">2026 Edition</div>
+        <div style="font-weight: 900; font-size: 28px; letter-spacing: -1px;">RYLO Phone 1</div>
+        <a href="#" class="btn" style="margin-top: 0; padding: 10px 25px; font-size: 12px;">SHOP</a>
     </nav>
 
-    <div class="hero">
-        <span class="promo">Launch Edition</span>
+    <section class="hero">
+        <span class="promo-tag">Der neue Standard</span>
         <h1>RYLO.</h1>
-        <p class="tagline">Premium-Performance trifft auf Polycarbonat.</p>
-    </div>
+        <p class="tagline">Günstig war noch nie so leistungsstark.</p>
+    </section>
 
-    <div class="grid">
-        <div class="card" style="grid-column: span 1;">
-            <p style="color: #666; text-transform: uppercase; font-size: 10px;">Aktion bis 14. Mai</p>
-            <div class="price">299€</div>
-            <p style="color: #444; text-decoration: line-through;">Statt 499€</p>
+    <div class="bento-grid">
+        <div class="card span-2" style="background: #fff; color: #000; border: none;">
+            <span class="label" style="color: #888;">Aktionspreis bis 14. Mai</span>
+            <div class="price-big">299€</div>
+            <p style="font-weight: 700; margin: 0;">Statt 499€ UVP</p>
         </div>
 
         <div class="card">
-            <h3 style="font-size: 30px; margin: 0;">120Hz</h3>
-            <p style="color: #666;">Super AMOLED Display</p>
+            <span class="label">Display</span>
+            <div class="value">120Hz</div>
+            <p class="sub">6.7" Super AMOLED<br>FHD+ (2340 x 1080)</p>
         </div>
 
         <div class="card">
-            <h3 style="font-size: 30px; margin: 0;">Snapdragon 6 Gen 3</h3>
-            <p style="color: #666;">Snapdragon Power</p>
+            <span class="label">Leistung</span>
+            <div class="value">SD 6G3</div>
+            <p class="sub">Snapdragon 6 Gen 3<br>Octa-Core bis 2.4 GHz</p>
+        </div>
+
+        <div class="card span-2">
+            <span class="label">Kamera-System</span>
+            <div class="value">50MP + OIS</div>
+            <p class="sub">Triple-Cam mit 8MP Ultra-Weitwinkel & 5MP Makro. 4K Video Support.</p>
+        </div>
+
+        <div class="card">
+            <span class="label">Speicher</span>
+            <div class="value">256 GB</div>
+            <p class="sub">8 GB RAM<br>Erweiterbar via microSD</p>
+        </div>
+
+        <div class="card">
+            <span class="label">Energie</span>
+            <div class="value">5000mAh</div>
+            <p class="sub">45W Schnellladen via USB-C</p>
+        </div>
+
+        <div class="card span-4">
+            <span class="label">Bauweise & Schutz</span>
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;">
+                <div class="value">Polycarbonat Shell</div>
+                <p class="sub" style="margin: 0;">IP67 Wasser- & Staubresistent | Gorilla Glass Victus+ | Nur 195g</p>
+            </div>
+        </div>
+        
+        <div class="card span-4" style="text-align: center; background: transparent;">
+            <p class="sub">5G • Wi-Fi 6 • Bluetooth 5.3 • NFC • Dual SIM + eSIM</p>
         </div>
     </div>
 
-    <a href="#" class="btn">Erstellt von Bili, Faran und Alessandro</a>
+    <div style="text-align: center;">
+        <a href="#" class="btn">Erstellt von Alessandro, Faran und Bili</a>
+    </div>
 
-    <footer style="margin: 100px 0 50px; color: #222; font-size: 10px; letter-spacing: 5px; text-transform: uppercase;">
-        RYLO Global
+    <footer style="margin-top: 100px; color: #222; font-size: 10px; letter-spacing: 10px; text-transform: uppercase; font-weight: 900;">
+        RYLO Global 2026
     </footer>
 
 </body>
