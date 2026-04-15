@@ -4,82 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RYLO – Der neue Standard</title>
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Backup-Styles falls Tailwind im Browser nicht sofort lädt */
+        body { background-color: #000 !important; color: #fff !important; margin: 0; font-family: sans-serif; }
+        .bento-card { background-color: #111; border: 1px solid rgba(255,255,255,0.05); border-radius: 40px; padding: 2rem; }
+    </style>
 </head>
-<body class="bg-black text-white font-sans antialiased">
+<body class="bg-black text-white antialiased">
 
     <nav class="p-8 flex justify-between items-center max-w-7xl mx-auto">
-        <div class="text-2xl font-black tracking-tighter">RYLO</div>
-        <button class="border border-white/20 px-6 py-2 rounded-full text-xs font-bold hover:bg-white hover:text-black transition uppercase">Jetzt kaufen</button>
+        <div class="text-2xl font-black tracking-tighter uppercase">RYLO</div>
+        <button class="border border-white/20 px-6 py-2 rounded-full text-[10px] font-bold hover:bg-white hover:text-black transition uppercase tracking-widest">Jetzt kaufen</button>
     </nav>
 
-    <section class="min-h-[70vh] flex flex-col items-center justify-center text-center px-6 border-b border-white/5">
-        <span class="text-blue-500 font-bold tracking-[0.3em] uppercase text-xs mb-4">Launch Edition</span>
-        <h1 class="text-8xl md:text-[160px] font-black leading-none tracking-tighter mb-6 bg-gradient-to-b from-white to-zinc-800 bg-clip-text text-transparent">
-            RYLO.
-        </h1>
-        <p class="text-gray-400 text-lg md:text-2xl max-w-2xl font-light leading-relaxed">
+    <section class="min-h-[60vh] flex flex-col items-center justify-center text-center px-6">
+        <span class="text-blue-500 font-bold tracking-[0.4em] uppercase text-[10px] mb-4">Launch Edition</span>
+        <h1 class="text-7xl md:text-[140px] font-black leading-none tracking-tighter mb-6">RYLO.</h1>
+        <p class="text-zinc-500 text-lg md:text-xl max-w-xl font-light italic">
             Der neue Standard für günstige Smartphones. <br>
-            <span class="text-white font-medium italic">Premium-Performance trifft auf Polycarbonat.</span>
+            <span class="text-white not-italic font-medium text-sm uppercase tracking-widest">Premium-Performance / Polycarbonat</span>
         </p>
     </section>
 
-    <section class="max-w-7xl mx-auto py-24 px-6">
-        <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 h-full">
+    <section class="max-w-6xl mx-auto py-12 px-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             
-            <div class="md:col-span-2 bg-zinc-900 p-12 rounded-[40px] flex flex-col justify-between border border-white/5">
-                <p class="text-zinc-500 uppercase text-xs font-bold tracking-widest">Aktionspreis</p>
+            <div class="md:col-span-2 bento-card flex flex-col justify-between min-h-[250px] bg-zinc-900">
+                <p class="text-zinc-500 uppercase text-[10px] font-bold tracking-widest">Aktionspreis</p>
                 <div>
                     <h2 class="text-7xl font-black italic">299€</h2>
-                    <p class="text-red-500 font-bold mt-2">Gültig bis 14. Mai</p>
+                    <p class="text-red-500 font-bold text-sm mt-2 uppercase tracking-tighter">Gültig bis 14. Mai • Statt 499€</p>
                 </div>
             </div>
 
-            <div class="bg-zinc-900 p-8 rounded-[40px] border border-white/5">
-                <p class="text-zinc-500 text-[10px] font-bold uppercase mb-12">Visuals</p>
-                <h3 class="text-4xl font-bold tracking-tighter">120Hz</h3>
-                <p class="text-zinc-400 text-sm mt-2 font-light">6.7" Super AMOLED Display.</p>
+            <div class="bento-card bg-zinc-900 border-white/10 text-center flex flex-col justify-center">
+                <h3 class="text-4xl font-bold tracking-tighter italic">120Hz</h3>
+                <p class="text-zinc-500 text-[10px] uppercase font-bold mt-2">Super AMOLED</p>
             </div>
 
-            <div class="bg-zinc-900 p-8 rounded-[40px] border border-white/5">
-                <p class="text-zinc-500 text-[10px] font-bold uppercase mb-12">Engine</p>
-                <h3 class="text-4xl font-bold tracking-tighter italic">SD 6G3</h3>
-                <p class="text-zinc-400 text-sm mt-2 font-light">Snapdragon Power.</p>
+            <div class="bento-card bg-zinc-900 text-center flex flex-col justify-center">
+                <h3 class="text-4xl font-bold tracking-tighter">SD 6G3</h3>
+                <p class="text-zinc-500 text-[10px] uppercase font-bold mt-2">Snapdragon Power</p>
             </div>
 
-            <div class="md:col-span-2 bg-zinc-900 p-12 rounded-[40px] border border-white/5 flex items-end">
+            <div class="md:col-span-2 bento-card bg-zinc-900 flex items-center justify-between">
                 <div>
-                    <p class="text-zinc-500 text-[10px] font-bold uppercase mb-4 tracking-widest">Optics</p>
-                    <h3 class="text-5xl font-black">50MP + OIS</h3>
-                    <p class="text-zinc-400 mt-2">Gestochen scharfe 4K Aufnahmen.</p>
+                    <h3 class="text-4xl font-black italic">50MP + OIS</h3>
+                    <p class="text-zinc-500 text-[10px] uppercase font-bold mt-1">Optische Stabilisierung</p>
                 </div>
-            </div>
-
-            <div class="md:col-span-2 grid grid-cols-2 gap-4 text-center">
-                <div class="bg-white text-black p-8 rounded-[40px] flex flex-col justify-center leading-tight">
-                    <span class="text-4xl font-black italic">5000</span>
-                    <span class="text-xs font-bold uppercase">mAh Akku</span>
-                </div>
-                <div class="bg-zinc-800 p-8 rounded-[40px] flex flex-col justify-center leading-tight">
-                    <span class="text-4xl font-black italic">195g</span>
-                    <span class="text-xs font-bold uppercase uppercase">Ultra Leicht</span>
-                </div>
+                <div class="bg-white/5 px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest">4K Video</div>
             </div>
 
         </div>
     </section>
 
-    <section class="py-32 text-center border-t border-white/5">
-        <h2 class="text-4xl font-light mb-8 text-zinc-500 italic">Bereit für den Wechsel?</h2>
-        <button class="bg-white text-black px-20 py-5 rounded-full font-black text-xl hover:scale-105 active:scale-95 transition">
-            ZUM WARENKORB
-        </button>
-    </section>
-
-    <footer class="p-12 text-center text-zinc-800 text-[10px] font-bold tracking-[0.5em] uppercase">
+    <footer class="py-20 text-center text-zinc-800 text-[10px] font-bold tracking-[0.6em] uppercase">
         RYLO Global &copy; 2026
     </footer>
 
 </body>
 </html>
-
