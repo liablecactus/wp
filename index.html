@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RYLO Phone 1 – Der neue Standard</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         body { background: radial-gradient(circle at center, #001f3f 0%, #000 100%);
- font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, sans-serif; margin: 0; padding-bottom: 100px; line-height: 1.5; }
+ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, sans-serif; margin: 0; padding-bottom: 100px; line-height: 1.5; color: white; }
         nav { width: 100%; max-width: 1200px; margin: 0 auto; padding: 40px 20px; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; }
         .hero { text-align: center; padding: 60px 20px 100px; }
         .promo-tag { color: #3b82f6; font-weight: 800; font-size: 12px; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 20px; display: block; }
@@ -28,6 +29,10 @@
         .price-big { font-size: 80px; font-weight: 900; font-style: italic; margin: 10px 0; line-height: 1; }
         .btn { background: #fff; color: #000; padding: 20px 60px; border-radius: 100px; font-weight: 900; text-decoration: none; display: inline-block; transition: transform 0.2s; margin-top: 40px; }
         .btn:hover { transform: scale(1.05); }
+        
+        /* Damit beim Laden nichts flackert */
+        [data-aos] { pointer-events: none; }
+        .aos-animate { pointer-events: auto; }
     </style>
 </head>
 <body>
@@ -37,50 +42,50 @@
         <a href="#" class="btn" style="margin-top: 0; padding: 10px 25px; font-size: 12px;">SHOP</a>
     </nav>
 
-    <section class="hero">
+    <section class="hero" data-aos="zoom-in">
         <span class="promo-tag">Der neue Standard</span>
         <h1>RYLO Phone 1.</h1>
         <p class="tagline">Günstig war noch nie so leistungsstark.</p>
     </section>
 
     <div class="bento-grid">
-        <div class="card span-2" style="background: #fff; color: #000; border: none;">
+        <div class="card span-2" style="background: #fff; color: #000; border: none;" data-aos="fade-up">
             <span class="label" style="color: #888;">Aktionspreis bis 14. Mai</span>
             <div class="price-big">299€</div>
             <p style="font-weight: 700; margin: 0;">Statt 499€ UVP</p>
         </div>
 
-        <div class="card">
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
             <span class="label">Display</span>
             <div class="value">120Hz</div>
             <p class="sub">6.7" Super AMOLED<br>FHD+ (2340 x 1080)</p>
         </div>
 
-        <div class="card">
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
             <span class="label">Leistung</span>
             <div class="value">Snapdragon 6 Gen 3</div>
-            <p class="sub">Snapdragon 6 Gen 3<br>Octa-Core bis 2.4 GHz</p>
+            <p class="sub">Octa-Core bis 2.4 GHz</p>
         </div>
 
-        <div class="card span-2">
+        <div class="card span-2" data-aos="fade-up">
             <span class="label">Kamera-System</span>
             <div class="value">50MP + OIS</div>
             <p class="sub">Triple-Cam mit 8MP Ultra-Weitwinkel & 5MP Makro. 4K Video Support.</p>
         </div>
 
-        <div class="card">
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
             <span class="label">Speicher</span>
             <div class="value">256 GB</div>
             <p class="sub">8 GB RAM<br>Erweiterbar via microSD</p>
         </div>
 
-        <div class="card">
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
             <span class="label">Energie</span>
             <div class="value">5000mAh</div>
             <p class="sub">45W Schnellladen via USB-C</p>
         </div>
 
-        <div class="card span-4">
+        <div class="card span-4" data-aos="fade-up">
             <span class="label">Bauweise & Schutz</span>
             <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;">
                 <div class="value">Polycarbonat Shell</div>
@@ -88,18 +93,26 @@
             </div>
         </div>
         
-        <div class="card span-4" style="text-align: center; background: transparent;">
+        <div class="card span-4" style="text-align: center; background: transparent;" data-aos="fade-in">
             <p class="sub">5G • Wi-Fi 6 • Bluetooth 5.3 • NFC • Dual SIM + eSIM</p>
         </div>
     </div>
 
-    <div style="text-align: center;">
+    <div style="text-align: center;" data-aos="zoom-in" data-aos-offset="50">
         <a href="#" class="btn">Erstellt von Alessandro, Faran und Bili</a>
     </div>
 
-    <footer style="margin-top: 100px; color: #222; font-size: 10px; letter-spacing: 10px; text-transform: uppercase; font-weight: 900;">
+    <footer style="margin-top: 100px; color: #222; font-size: 10px; letter-spacing: 10px; text-transform: uppercase; font-weight: 900; text-align: center;">
         RYLO Global 2026
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+    </script>
 </body>
 </html>
