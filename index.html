@@ -4,63 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RYLO – Der neue Standard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Backup-Styles falls Tailwind im Browser nicht sofort lädt */
-        body { background-color: #000 !important; color: #fff !important; margin: 0; font-family: sans-serif; }
-        .bento-card { background-color: #111; border: 1px solid rgba(255,255,255,0.05); border-radius: 40px; padding: 2rem; }
+        /* Direktes CSS - funktioniert immer, auch ohne Internet-Frameworks */
+        body { background-color: #000; color: #fff; font-family: -apple-system, sans-serif; margin: 0; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        nav { width: 100%; max-width: 1200px; padding: 40px; display: flex; justify-content: space-between; box-sizing: border-box; }
+        .hero { padding: 100px 20px; }
+        h1 { font-size: 80px; font-weight: 900; margin: 0; letter-spacing: -4px; }
+        .tagline { color: #666; font-size: 20px; margin-top: 10px; font-style: italic; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; width: 100%; max-width: 1100px; padding: 20px; box-sizing: border-box; }
+        .card { background: #111; padding: 40px; border-radius: 30px; border: 1px solid #222; }
+        .price { font-size: 60px; font-weight: 900; color: #fff; margin: 10px 0; }
+        .btn { background: #fff; color: #000; padding: 15px 40px; border-radius: 50px; font-weight: bold; text-decoration: none; margin-top: 40px; display: inline-block; }
+        .promo { color: #ff3b30; font-weight: bold; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; }
     </style>
 </head>
-<body class="bg-black text-white antialiased">
+<body>
 
-    <nav class="p-8 flex justify-between items-center max-w-7xl mx-auto">
-        <div class="text-2xl font-black tracking-tighter uppercase">RYLO</div>
-        <button class="border border-white/20 px-6 py-2 rounded-full text-[10px] font-bold hover:bg-white hover:text-black transition uppercase tracking-widest">Jetzt kaufen</button>
+    <nav>
+        <div style="font-weight: 900; font-size: 24px;">RYLO</div>
+        <div style="font-size: 12px; color: #666; text-transform: uppercase; letter-spacing: 2px;">2026 Edition</div>
     </nav>
 
-    <section class="min-h-[60vh] flex flex-col items-center justify-center text-center px-6">
-        <span class="text-blue-500 font-bold tracking-[0.4em] uppercase text-[10px] mb-4">Launch Edition</span>
-        <h1 class="text-7xl md:text-[140px] font-black leading-none tracking-tighter mb-6">RYLO.</h1>
-        <p class="text-zinc-500 text-lg md:text-xl max-w-xl font-light italic">
-            Der neue Standard für günstige Smartphones. <br>
-            <span class="text-white not-italic font-medium text-sm uppercase tracking-widest">Premium-Performance / Polycarbonat</span>
-        </p>
-    </section>
+    <div class="hero">
+        <span class="promo">Launch Edition</span>
+        <h1>RYLO.</h1>
+        <p class="tagline">Premium-Performance trifft auf Polycarbonat.</p>
+    </div>
 
-    <section class="max-w-6xl mx-auto py-12 px-6">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            
-            <div class="md:col-span-2 bento-card flex flex-col justify-between min-h-[250px] bg-zinc-900">
-                <p class="text-zinc-500 uppercase text-[10px] font-bold tracking-widest">Aktionspreis</p>
-                <div>
-                    <h2 class="text-7xl font-black italic">299€</h2>
-                    <p class="text-red-500 font-bold text-sm mt-2 uppercase tracking-tighter">Gültig bis 14. Mai • Statt 499€</p>
-                </div>
-            </div>
-
-            <div class="bento-card bg-zinc-900 border-white/10 text-center flex flex-col justify-center">
-                <h3 class="text-4xl font-bold tracking-tighter italic">120Hz</h3>
-                <p class="text-zinc-500 text-[10px] uppercase font-bold mt-2">Super AMOLED</p>
-            </div>
-
-            <div class="bento-card bg-zinc-900 text-center flex flex-col justify-center">
-                <h3 class="text-4xl font-bold tracking-tighter">SD 6G3</h3>
-                <p class="text-zinc-500 text-[10px] uppercase font-bold mt-2">Snapdragon Power</p>
-            </div>
-
-            <div class="md:col-span-2 bento-card bg-zinc-900 flex items-center justify-between">
-                <div>
-                    <h3 class="text-4xl font-black italic">50MP + OIS</h3>
-                    <p class="text-zinc-500 text-[10px] uppercase font-bold mt-1">Optische Stabilisierung</p>
-                </div>
-                <div class="bg-white/5 px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest">4K Video</div>
-            </div>
-
+    <div class="grid">
+        <div class="card" style="grid-column: span 1;">
+            <p style="color: #666; text-transform: uppercase; font-size: 10px;">Aktion bis 14. Mai</p>
+            <div class="price">299€</div>
+            <p style="color: #444; text-decoration: line-through;">Statt 499€</p>
         </div>
-    </section>
 
-    <footer class="py-20 text-center text-zinc-800 text-[10px] font-bold tracking-[0.6em] uppercase">
-        RYLO Global &copy; 2026
+        <div class="card">
+            <h3 style="font-size: 30px; margin: 0;">120Hz</h3>
+            <p style="color: #666;">Super AMOLED Display</p>
+        </div>
+
+        <div class="card">
+            <h3 style="font-size: 30px; margin: 0;">SD 6G3</h3>
+            <p style="color: #666;">Snapdragon Power</p>
+        </div>
+    </div>
+
+    <a href="#" class="btn">JETZT KAUFEN</a>
+
+    <footer style="margin: 100px 0 50px; color: #222; font-size: 10px; letter-spacing: 5px; text-transform: uppercase;">
+        RYLO Global
     </footer>
 
 </body>
