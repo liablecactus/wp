@@ -22,16 +22,16 @@
         }
 
         .light-mode {
-            /* LIGHT MODE */
+            /* LIGHT MODE - Jetzt in Clean Weiß */
             --bg-color: #ffffff;
-            --bg-gradient: radial-gradient(circle at center, #e0f2fe 0%, #ffffff 100%);
-            --card-bg: rgba(245, 245, 245, 0.9);
+            --bg-gradient: radial-gradient(circle at center, #ffffff 0%, #f8f9fa 100%);
+            --card-bg: #f3f4f6;
             --text-color: #0f172a;
             --btn-bg: #0f172a;
             --btn-text: #ffffff;
             --label: #94a3b8;
             --sub: #64748b;
-            --border: #e2e8f0;
+            --border: #e5e7eb;
         }
 
         /* Preloader Styles */
@@ -210,26 +210,18 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Loader Logik (2 Sekunden)
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('loader').classList.add('loader-hidden');
-                // AOS erst starten, wenn der Loader weg ist
                 AOS.init({ duration: 800, once: true, offset: 50 });
             }, 2000);
         });
 
-        // Theme-Wechsel Logik
         function toggleTheme() {
             const body = document.body;
             const btn = document.getElementById('themeBtn');
             body.classList.toggle('light-mode');
-            
-            if (body.classList.contains('light-mode')) {
-                btn.innerHTML = '☀️';
-            } else {
-                btn.innerHTML = '🌙';
-            }
+            btn.innerHTML = body.classList.contains('light-mode') ? '☀️' : '🌙';
         }
     </script>
 </body>
