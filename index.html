@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RYLO Phone 1 – Der neue Standard</title>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
         :root {
+            /* DARK MODE */
             --bg-color: #000000;
             --bg-image: radial-gradient(circle at center, #001f3f 0%, #000 100%);
             --card-bg: rgba(17, 17, 17, 0.8);
@@ -15,13 +15,14 @@
             --btn-bg: #ffffff;
             --btn-text: #000000;
             --label: #444;
-            --sub: #888;
+            --sub: #666;
             --border: #1a1a1a;
             --accent: #3b82f6;
             --input-bg: rgba(255,255,255,0.05);
         }
 
         .light-mode {
+            /* LIGHT MODE */
             --bg-color: #ffffff;
             --bg-image: none;
             --card-bg: #f2f2f7; 
@@ -38,8 +39,8 @@
             background-color: var(--bg-color);
             background-image: var(--bg-image);
             background-attachment: fixed;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-            margin: 0; padding-bottom: 60px; color: var(--text-color); 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, sans-serif; 
+            margin: 0; padding-bottom: 60px; line-height: 1.5; color: var(--text-color); 
             transition: all 0.5s ease;
             min-height: 100vh;
         }
@@ -52,7 +53,6 @@
         }
         .loader-hidden { opacity: 0; pointer-events: none; }
 
-        /* Checkout Modal */
         #checkout {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.85); backdrop-filter: blur(15px);
@@ -73,6 +73,8 @@
         #checkout.active .checkout-card { transform: scale(1) translateY(0); }
 
         .close-btn { position: absolute; top: 20px; right: 20px; cursor: pointer; font-size: 24px; opacity: 0.5; }
+        .checkout-title { font-size: 28px; font-weight: 800; margin-bottom: 5px; }
+        .checkout-price { color: var(--accent); font-weight: 700; margin-bottom: 25px; }
 
         .input-group { margin-bottom: 15px; }
         .input-group label { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; color: var(--label); }
@@ -84,18 +86,20 @@
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
 
         nav { width: 100%; max-width: 1200px; margin: 0 auto; padding: 20px; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; }
-        .theme-toggle { background: var(--card-bg); border: 1px solid var(--border); color: var(--text-color); width: 45px; height: 45px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .theme-toggle { background: var(--card-bg); border: 1px solid var(--border); color: var(--text-color); width: 45px; height: 45px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; }
         
-        .hero { text-align: center; padding: 60px 20px; }
-        h1 { font-size: clamp(40px, 12vw, 120px); font-weight: 900; margin: 0; letter-spacing: -4px; line-height: 0.85; }
+        .hero { text-align: center; padding: 40px 20px 60px; }
+        .promo-tag { color: var(--accent); font-weight: 800; font-size: 10px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 15px; display: block; }
+        h1 { font-size: clamp(50px, 12vw, 160px); font-weight: 900; margin: 0; letter-spacing: -3px; line-height: 0.9; }
+        .tagline { color: var(--sub); font-size: 16px; margin-top: 15px; font-weight: 300; }
         
-        /* Fixed Bento Grid */
+        /* Bento Grid Reparatur */
         .bento-grid { 
             display: grid; 
-            grid-template-columns: repeat(2, 1fr); 
+            grid-template-columns: repeat(1, 1fr); 
             gap: 15px; 
             width: 100%; 
-            max-width: 1100px; 
+            max-width: 1200px; 
             margin: 0 auto; 
             padding: 20px; 
             box-sizing: border-box; 
@@ -103,31 +107,31 @@
         
         .card { 
             background: var(--card-bg); 
-            padding: 25px; 
-            border-radius: 24px; 
+            padding: 30px; 
+            border-radius: 30px; 
             border: 1px solid var(--border); 
             display: flex; 
             flex-direction: column; 
-            justify-content: flex-end;
+            justify-content: center;
             backdrop-filter: blur(10px); 
-            min-height: 160px;
+            min-height: 140px;
         }
         
         @media (min-width: 768px) {
             .bento-grid { grid-template-columns: repeat(4, 1fr); }
             .span-2 { grid-column: span 2; }
-            .span-3 { grid-column: span 3; }
             .span-4 { grid-column: span 4; }
         }
 
-        .label { color: var(--label); text-transform: uppercase; font-size: 10px; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 8px; }
-        .value { font-size: 28px; font-weight: 800; margin: 0; line-height: 1; letter-spacing: -0.5px; }
-        .price-big { font-size: clamp(50px, 8vw, 80px); font-weight: 900; font-style: italic; line-height: 1; margin: 10px 0; }
+        .label { color: var(--label); text-transform: uppercase; font-size: 10px; font-weight: 800; letter-spacing: 2px; margin-bottom: 10px; display: block; }
+        .value { font-size: 32px; font-weight: 800; margin: 0; line-height: 1.1; letter-spacing: -1px; }
+        .sub-text { color: var(--sub); font-size: 14px; margin-top: 8px; font-weight: 400; }
+        .price-big { font-size: clamp(60px, 10vw, 80px); font-weight: 900; font-style: italic; line-height: 1; margin: 10px 0; }
         
-        .btn { background: var(--btn-bg); color: var(--btn-text) !important; padding: 18px 40px; border-radius: 100px; font-weight: 900; text-decoration: none; display: inline-block; border: none; cursor: pointer; transition: 0.3s; text-align: center; }
+        .btn { background: var(--btn-bg); color: var(--btn-text) !important; padding: 18px 40px; border-radius: 100px; font-weight: 900; text-decoration: none; display: inline-block; margin-top: 30px; border: none; cursor: pointer; transition: 0.3s; }
+        .btn:hover { transform: scale(1.05); }
 
-        footer { margin-top: 80px; color: var(--label); font-size: 9px; letter-spacing: 4px; text-transform: uppercase; text-align: center; padding: 20px; }
-        @keyframes load { to { left: 0; } }
+        footer { margin-top: 60px; color: var(--label); font-size: 8px; letter-spacing: 6px; text-transform: uppercase; text-align: center; }
     </style>
 </head>
 <body>
@@ -142,80 +146,103 @@
     <div id="checkout">
         <div class="checkout-card">
             <div class="close-btn" onclick="toggleCheckout()">✕</div>
-            <h2 style="margin: 0 0 5px 0;">Bestellung</h2>
-            <div style="color: var(--accent); font-weight: 700; margin-bottom: 25px;">RYLO Phone 1 — 299€</div>
-            
-            <form id="orderForm">
-                <div class="input-group"><label>Name</label><input type="text" name="user_name" placeholder="Vollständiger Name" required></div>
-                <div class="input-group"><label>E-Mail</label><input type="email" name="user_email" placeholder="Deine E-Mail" required></div>
-                <div class="input-group"><label>Adresse</label><input type="text" name="user_address" placeholder="Straße, Nr, Stadt" required></div>
-                <button type="submit" id="submitBtn" class="btn" style="width: 100%; margin-top: 10px;">JETZT KAUFEN</button>
+            <div class="checkout-title">Bestellung</div>
+            <div class="checkout-price">RYLO Phone 1 — 299€</div>
+            <form onsubmit="event.preventDefault(); alert('Vielen Dank!'); toggleCheckout();">
+                <div class="input-group"><label>Name</label><input type="text" placeholder="Vollständiger Name" required></div>
+                <div class="input-group"><label>E-Mail</label><input type="email" placeholder="mail@example.com" required></div>
+                <div class="input-group"><label>Adresse</label><input type="text" placeholder="Straße, Nr, Stadt" required></div>
+                <div style="border-top: 1px solid var(--border); margin: 20px 0; padding-top: 20px;">
+                    <div class="input-group"><label>Kartennummer</label><input type="text" placeholder="0000 0000 0000 0000" required></div>
+                    <div class="form-row">
+                        <div class="input-group"><label>Ablauf</label><input type="text" placeholder="MM/YY" required></div>
+                        <div class="input-group"><label>CVV</label><input type="text" placeholder="123" required></div>
+                    </div>
+                </div>
+                <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">JETZT KAUFEN</button>
             </form>
         </div>
     </div>
 
     <nav>
-        <div style="font-weight: 900; font-size: 22px;">RYLO</div>
+        <div style="font-weight: 900; font-size: 22px;">RYLO Phone 1</div>
         <div style="display: flex; gap: 15px; align-items: center;">
             <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">🌙</button>
-            <a onclick="toggleCheckout()" class="btn" style="padding: 10px 20px; font-size: 11px; margin: 0;">SHOP</a>
+            <a onclick="toggleCheckout()" class="btn" style="margin: 0; padding: 8px 18px; font-size: 10px;">SHOP</a>
         </div>
     </nav>
 
     <section class="hero" data-aos="fade-down">
+        <span class="promo-tag">Der neue Standard</span>
         <h1>RYLO Phone 1.</h1>
-        <p style="color: var(--sub); font-size: 18px; margin-top: 20px;">High-End zum Bruchteil des Preises.</p>
+        <p class="tagline">Günstig war noch nie so leistungsstark.</p>
     </section>
 
     <div class="bento-grid">
         <div class="card span-2" style="background: #fff; color: #000; border: none;" data-aos="fade-up">
-            <span class="label" style="color: #888;">Deal</span>
+            <span class="label" style="color: #888;">Aktionspreis bis 14. Mai</span>
             <div class="price-big">299€</div>
+            <p style="font-weight: 700; margin: 0; font-size: 18px;">Statt 499€ UVP</p>
         </div>
+
         <div class="card" data-aos="fade-up" data-aos-delay="100">
             <span class="label">Display</span>
             <div class="value">120Hz</div>
+            <div class="sub-text">6.7" Super AMOLED</div>
         </div>
+
         <div class="card" data-aos="fade-up" data-aos-delay="200">
-            <span class="label">Chipsatz</span>
-            <div class="value">SD 6G3</div>
+            <span class="label">Leistung</span>
+            <div class="value">SD 6 Gen 3</div>
+            <div class="sub-text">Octa-Core Power</div>
         </div>
-        <div class="card" data-aos="fade-up">
-            <span class="label">Kamera</span>
-            <div class="value">50MP</div>
+
+        <div class="card span-2" data-aos="fade-up">
+            <span class="label">Kamera-System</span>
+            <div class="value">50MP + OIS</div>
+            <div class="sub-text">Triple-Cam & 4K Video</div>
         </div>
-        <div class="card span-2" data-aos="fade-up" data-aos-delay="100">
-            <span class="label">Akku</span>
-            <div class="value">5000mAh</div>
-        </div>
-        <div class="card" data-aos="fade-up" data-aos-delay="200">
+
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
             <span class="label">Speicher</span>
-            <div class="value">256GB</div>
+            <div class="value">256 GB</div>
+            <div class="sub-text">8 GB RAM</div>
         </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
+            <span class="label">Energie</span>
+            <div class="value">5000mAh</div>
+            <div class="sub-text">45W Fast Charge</div>
+        </div>
+
         <div class="card span-4" data-aos="fade-up">
-            <span class="label">Finish</span>
-            <div class="value">Matte Polycarbonat</div>
+            <span class="label">Material & Design</span>
+            <div class="value">Polycarbonat Shell</div>
+            <div class="sub-text">IP67 Wasserfest | Gorilla Glass | 195g Leichtgewicht</div>
         </div>
+    </div>
+
+    <div style="text-align: center; padding: 20px;" data-aos="zoom-in">
+        <a onclick="toggleCheckout()" class="btn">Erstellt von Alessandro, Labeeq, Faran und Bili</a>
     </div>
 
     <footer>RYLO Global 2026</footer>
 
+    <style> @keyframes load { to { left: 0; } } </style>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        (function() {
-            emailjs.init("0dAS4ug_oZTw4dOcL"); 
-        })();
-
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('loader').classList.add('loader-hidden');
                 AOS.init({ duration: 800, once: true });
-            }, 1500);
+            }, 2000);
         });
 
         function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-            document.getElementById('themeBtn').innerHTML = document.body.classList.contains('light-mode') ? '☀️' : '🌙';
+            const body = document.body;
+            const btn = document.getElementById('themeBtn');
+            body.classList.toggle('light-mode');
+            btn.innerHTML = body.classList.contains('light-mode') ? '☀️' : '🌙';
         }
 
         function toggleCheckout() {
@@ -230,26 +257,6 @@
                 document.body.style.overflow = 'hidden';
             }
         }
-
-        document.getElementById('orderForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const btn = document.getElementById('submitBtn');
-            btn.innerHTML = "SENDET...";
-            btn.disabled = true;
-
-            // Template ID kleingeschrieben für besseren Support
-            emailjs.sendForm('service_v3i568z', 'template_3ji1aps', this)
-                .then(function() {
-                    alert('Bestellung erfolgreich!');
-                    toggleCheckout();
-                    btn.innerHTML = "JETZT KAUFEN";
-                    btn.disabled = false;
-                }, function(error) {
-                    alert('Fehler: ' + error.text);
-                    btn.innerHTML = "FEHLER";
-                    btn.disabled = false;
-                });
-        });
     </script>
 </body>
 </html>
